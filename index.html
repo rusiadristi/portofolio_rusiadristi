@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="id" data-lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rusi Adristi - Portfolio</title>
+    <meta name="description"
+        content="Portofolio profesional Rusi Adristi - Lulusan S1 Sistem Informasi dengan fokus pada Web Development, IT Business Analyst, System Analysis, dan UI/UX Design.">
+    <meta name="keywords"
+        content="Rusi Adristi, Portfolio, IT Business Analyst, System Analysis, Web Development, UI/UX Designer, Laravel, Flutter, Sistem Informasi">
+    <meta name="author" content="Rusi Adristi">
+
+    <!-- Open Graph / Meta Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rusi Adristi - Portfolio">
+    <meta property="og:description"
+        content="Portofolio profesional Rusi Adristi - Web Development, IT Business Analyst, System Analysis, dan UI/UX Design.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================================================
+         NAVBAR
+         ========================================================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span>Rusi</span> <span class="highlight">Adristi</span><span class="logo-dot"></span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links">
+                <li>
+                    <a href="#home" class="nav-link active">
+                        <span class="lang-id">Beranda</span>
+                        <span class="lang-en">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills" class="nav-link">
+                        <span class="lang-id">Keahlian</span>
+                        <span class="lang-en">Skills</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#experience" class="nav-link">
+                        <span class="lang-id">Pengalaman</span>
+                        <span class="lang-en">Experience</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link">
+                        <span class="lang-id">Proyek</span>
+                        <span class="lang-en">Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#certificates" class="nav-link">
+                        <span class="lang-id">Sertifikat</span>
+                        <span class="lang-en">Certificates</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Navigation Actions (Language Switcher & Hamburger) -->
+            <div class="nav-actions">
+                <div class="lang-switch">
+                    <button id="btn-id" class="lang-btn active" onclick="setLang('id')"
+                        aria-label="Bahasa Indonesia">ID</button>
+                    <button id="btn-en" class="lang-btn" onclick="setLang('en')" aria-label="English">EN</button>
+                </div>
+
+                <button class="hamburger" aria-label="Menu" type="button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul class="mobile-nav-links">
+            <li>
+                <a href="#home">
+                    <span class="lang-id">Beranda</span>
+                    <span class="lang-en">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#skills">
+                    <span class="lang-id">Keahlian</span>
+                    <span class="lang-en">Skills</span>
+                </a>
+            </li>
+            <li>
+                <a href="#experience">
+                    <span class="lang-id">Pengalaman</span>
+                    <span class="lang-en">Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="#projects">
+                    <span class="lang-id">Proyek</span>
+                    <span class="lang-en">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="#certificates">
+                    <span class="lang-id">Sertifikat</span>
+                    <span class="lang-en">Certificates</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section id="home" class="hero">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <p class="greeting">
+                    <span class="greeting-wave">👋</span>
+                    <span class="lang-id">Halo! Saya</span>
+                    <span class="lang-en">Hello! I am</span>
+                </p>
+
+                <h1 class="hero-title">
+                    Rusi <span class="highlight">Adristi</span>
+                </h1>
+
+                <h2 class="hero-subtitle">
+                    <span class="lang-id">Lulusan Sistem Informasi</span>
+                    <span class="lang-en">Information Systems Graduate</span>
+                    <br>
+                    <span class="typewriter" id="typewriter"></span><span class="cursor">|</span>
+                </h2>
+
+                <p class="hero-description">
+                    <span class="lang-id">
+                        Lulusan S1 Sistem Informasi <strong>Universitas Putra Indonesia YPTK Padang</strong> dengan
+                        fokus pada <strong>Web Development, IT Business Analyst, System Analysis, dan UI/UX
+                            Design</strong>. Menguasai <strong>PHP, Laravel, MySQL, Flutter, dan Firebase</strong>,
+                        serta memiliki pemahaman <strong>BPMN/UML, database, CRUD, REST API, dan pengembangan sistem
+                            berbasis web</strong>. Berpengalaman dalam pengolahan data, digitalisasi dokumen, dan
+                        pengembangan solusi digital dengan kemampuan problem solving, analytical thinking, teamwork, dan
+                        adaptasi teknologi. Didukung keikutsertaan dalam <strong>Pelatihan Web Programmer</strong>, pengalaman
+                        praktis dalam tata kelola administrasi operasional dan pelaporan di <strong>Biro Administrasi Pembangunan Pemprov
+                            Sumbar</strong>, akurasi rekapitulasi data digital via <strong>Sirekap KPU</strong>, serta
+                        <strong>Pelatihan Kartu Prakerja Desain Komunikasi Visual</strong> untuk mendukung rekayasa solusi web dan
+                        kebutuhan antarmuka sistem digital.
+                    </span>
+                    <span class="lang-en">
+                        Information Systems Graduate from <strong>Universitas Putra Indonesia YPTK Padang</strong>
+                        specializing in <strong>Web Development, IT Business Analyst, System Analysis, and UI/UX
+                            Design</strong>. Proficient in <strong>PHP, Laravel, MySQL, Flutter, and Firebase</strong>,
+                        with deep comprehension of <strong>BPMN/UML, databases, CRUD, REST API, and web system
+                            development</strong>. Experienced in data processing, document digitization, and digital
+                        solution delivery with strong problem-solving, analytical thinking, teamwork, and technological
+                        adaptation. Backed by participation in <strong>Web Programmer Training</strong>, practical experience in
+                        operational administration governance and reporting at the <strong>Regional Development Administration Bureau of
+                            West Sumatra Provincial Government</strong>, high-accuracy digital data recap via <strong>Sirekap
+                            KPU</strong>, and <strong>Prakerja Visual Communication Design Training</strong> supporting web solution
+                        engineering and digital system UI/UX needs.
+                    </span>
+                </p>
+
+                <div class="hero-buttons">
+                    <button onclick="openCVModal('pdf/CV%20Rusi%20Adristi%20(1)r.pdf')" class="btn btn-primary">
+                        <i class="fas fa-file-pdf"></i>
+                        <span class="lang-id">Lihat CV</span>
+                        <span class="lang-en">View CV</span>
+                    </button>
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="lang-id">Lihat Proyek</span>
+                        <span class="lang-en">Explore Projects</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-img-container">
+                        <img class="profile-img" src="gambar/foto-profil.jpg" alt="Foto Profil Rusi Adristi"
+                            loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS SECTION
+         ========================================================================== -->
+    <section id="skills" class="skills section-container">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    <span class="lang-id">Kompetensi</span>
+                    <span class="lang-en">Competencies</span>
+                </span>
+                <h2>
+                    <span class="lang-id">Bidang <span class="highlight">Keahlian</span></span>
+                    <span class="lang-en">Areas of <span class="highlight">Expertise</span></span>
+                </h2>
+                <p>
+                    <span class="lang-id">Kombinasi analisis kebutuhan bisnis, riset pengguna, dan keterampilan teknis
+                        rekayasa perangkat lunak.</span>
+                    <span class="lang-en">A synergy between business process analysis, user research, and full-stack
+                        software development.</span>
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Skill 1: Business Analyst -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-hexagon-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>IT Business Analyst</h3>
+                    </div>
+                    <p>
+                        <span class="lang-id">Menganalisis kebutuhan bisnis, menjembatani tim teknis dengan stakeholder,
+                            memodelkan alur proses bisnis, dan merumuskan spesifikasi produk digital yang
+                            efektif.</span>
+                        <span class="lang-en">Analyzing business requirements, bridging technical teams with
+                            stakeholders, modeling workflows, and designing effective digital product
+                            specifications.</span>
+                    </p>
+                    <div class="skill-tags">
+                        <span>BPMN</span>
+                        <span>UML Diagram</span>
+                        <span>System Analysis</span>
+                        <span>Business Model Canvas (BMC)</span>
+                        <span>Jira</span>
+                        <span>Trello</span>
+                        <span>Draw.io</span>
+                        <span>Data Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Skill 2: UI/UX Design -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-hexagon-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                    </div>
+                    <p>
+                        <span class="lang-id">Merancang arsitektur informasi, wireframing, dan desain antarmuka
+                            interaktif yang modern, estetik, dan mengutamakan kemudahan pengalaman pengguna (UX).</span>
+                        <span class="lang-en">Crafting information architecture, wireframes, and modern interactive
+                            interfaces focused on intuitive user experience (UX) and visual elegance.</span>
+                    </p>
+                    <div class="skill-tags">
+                        <span>Figma</span>
+                        <span>Wireframing</span>
+                        <span>Interactive Prototyping</span>
+                        <span>User Research</span>
+                        <span>Design System</span>
+                        <span>Usability Testing</span>
+                    </div>
+                </div>
+
+                <!-- Skill 3: Mobile Development -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-hexagon-icon">
+                            <i class="fas fa-mobile-screen-button"></i>
+                        </div>
+                        <h3>Mobile Development</h3>
+                    </div>
+                    <p>
+                        <span class="lang-id">Membangun aplikasi mobile multiplatform dengan performa tinggi, integrasi
+                            backend realtime, sinkronisasi cloud data, dan implementasi payment gateway.</span>
+                        <span class="lang-en">Building high-performance cross-platform mobile apps with real-time
+                            backend synchronization, cloud storage, and secure payment integrations.</span>
+                    </p>
+                    <div class="skill-tags">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Firebase Firestore</span>
+                        <span>Authentication</span>
+                        <span>Midtrans Payment</span>
+                        <span>QR Code Scanner</span>
+                        <span>REST API</span>
+                    </div>
+                </div>
+
+                <!-- Skill 4: Web Development -->
+                <div class="skill-card">
+                    <div class="skill-card-header">
+                        <div class="skill-hexagon-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                    </div>
+                    <p>
+                        <span class="lang-id">Mengembangkan sistem informasi dan aplikasi web responsif, aman, dan
+                            dinamis dengan fitur deteksi biometrik wajah (Face-api.js) serta validasi lokasi GPS.</span>
+                        <span class="lang-en">Developing responsive, secure, and dynamic web applications featuring face
+                            recognition biometrics (Face-api.js) and GPS geofencing radius validation.</span>
+                    </p>
+                    <div class="skill-tags">
+                        <span>PHP</span>
+                        <span>Laravel</span>
+                        <span>MySQL</span>
+                        <span>CRUD</span>
+                        <span>REST API</span>
+                        <span>HTML5 / CSS3</span>
+                        <span>JavaScript (ES6+)</span>
+                        <span>Bootstrap</span>
+                        <span>Face-api.js</span>
+                        <span>FPDF Export</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPERIENCE SECTION (TIMELINE)
+         ========================================================================== -->
+    <section id="experience" class="experience section-container">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    <span class="lang-id">Perjalanan Profesional</span>
+                    <span class="lang-en">Career Journey</span>
+                </span>
+                <h2>
+                    <span class="lang-id">Pengalaman <span class="highlight">Kerja</span></span>
+                    <span class="lang-en">Work <span class="highlight">Experience</span></span>
+                </h2>
+                <p>
+                    <span class="lang-id">Pengalaman industri dan kontribusi nyata dalam pengembangan sistem instansi
+                        pemerintah dan perusahaan.</span>
+                    <span class="lang-en">Industrial track record and tangible contributions in institutional software
+                        development.</span>
+                </p>
+            </div>
+
+            <div class="timeline">
+                <!-- Experience 1: Biro Administrasi Pembangunan -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Apr 2025 - Mei 2025</span>
+
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>
+                                <span class="lang-id">Staff Administrasi & Pengolahan Data (Magang)</span>
+                                <span class="lang-en">Administration & Data Processing Staff (Internship)</span>
+                            </h3>
+                            <h4>
+                                <i class="fas fa-building-columns"></i>
+                                Kantor Gubernur Sumatera Barat – Biro Administrasi Pembangunan, Padang
+                            </h4>
+                        </div>
+
+                        <p class="timeline-desc">
+                            <span class="lang-id">Berperan aktif dalam pengelolaan tata kelola dokumen administrasi
+                                pemerintah daerah, digitalisasi berkas, serta rekapitulasi pelaporan kegiatan
+                                pembangunan daerah.</span>
+                            <span class="lang-en">Actively contributed to regional government document governance, file
+                                digitization, and regional development activity reporting recaps.</span>
+                        </p>
+
+                        <ul class="timeline-bullets">
+                            <li>
+                                <span class="lang-id">Mengelola, mengklasifikasikan, memverifikasi, dan mengarsipkan
+                                    <strong>tata kelola dokumen administrasi strategis</strong> menggunakan Microsoft Excel dan Word
+                                    untuk memastikan keteraturan dan integritas data biro.</span>
+                                <span class="lang-en">Managed, classified, verified, and archived <strong>strategic
+                                        administrative document governance</strong> using Microsoft Excel and Word to ensure high
+                                    data integrity and organizational order.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Mendukung penyusunan laporan melalui pengumpulan, pengolahan, dan
+                                    rekapitulasi data administrasi menggunakan <strong>Microsoft Office</strong>.</span>
+                                <span class="lang-en">Supported report formulation through systematic collection,
+                                    processing, and recapitulation of administrative data using <strong>Microsoft
+                                        Office</strong>.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Berkolaborasi dalam kegiatan operasional biro, termasuk
+                                    dokumentasi kegiatan dan pengelolaan data pendukung.</span>
+                                <span class="lang-en">Collaborated in bureau operational routines, including event
+                                    documentation and supporting data management.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Memastikan kelengkapan dokumen melalui validasi data sebelum
+                                    proses pengarsipan resmi.</span>
+                                <span class="lang-en">Ensured document completeness through data validation prior to
+                                    official archiving workflows.</span>
+                            </li>
+                        </ul>
+
+                        <!-- Experience Gallery Preview -->
+                        <div class="experience-gallery">
+                            <div class="gallery-item" onclick="openImageModal('gambar/magang-1.png')"
+                                title="Dokumentasi bersama pimpinan & rekan magang Biro Administrasi Pembangunan">
+                                <img src="gambar/magang-1.png"
+                                    alt="Dokumentasi bersama pimpinan & rekan magang Biro Administrasi Pembangunan"
+                                    loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/magang-3.png')"
+                                title="Dokumentasi operasional pengolahan data di meja kerja kantor">
+                                <img src="gambar/magang-3.png"
+                                    alt="Dokumentasi operasional pengolahan data di meja kerja kantor" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/magang-2.png')"
+                                title="Penyerahan plakat kenang-kenangan magang Biro Administrasi Pembangunan">
+                                <img src="gambar/magang-2.png"
+                                    alt="Penyerahan plakat kenang-kenangan magang Biro Administrasi Pembangunan"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2: KPU Padang -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Nov 2024</span>
+
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>
+                                <span class="lang-id">Operator Sirekap (KPPS)</span>
+                                <span class="lang-en">Sirekap System Operator (KPPS)</span>
+                            </h3>
+                            <h4>
+                                <i class="fas fa-check-to-slot"></i>
+                                Komisi Pemilihan Umum (KPU), Padang
+                            </h4>
+                        </div>
+
+                        <p class="timeline-desc">
+                            <span class="lang-id">Bertanggung jawab dalam digitalisasi data formulir C.Hasil pemilu
+                                secara langsung dan presisi tinggi menggunakan sistem terintegrasi KPU.</span>
+                            <span class="lang-en">Responsible for direct and high-precision digital data entry of
+                                election results using the integrated KPU mobile system.</span>
+                        </p>
+
+                        <ul class="timeline-bullets">
+                            <li>
+                                <span class="lang-id">Mengoperasikan aplikasi <strong>Sirekap Mobile</strong> untuk
+                                    digitalisasi dan input hasil pemungutan suara dari <strong>250+ pemilih pada 1
+                                        TPS</strong> secara akurat dan tepat waktu.</span>
+                                <span class="lang-en">Operated the <strong>Sirekap Mobile</strong> app to digitize and
+                                    submit vote results for <strong>250+ voters in 1 polling station</strong> accurately
+                                    and on schedule.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Memverifikasi data hasil pemilu sebelum unggah ke sistem guna
+                                    memastikan kesesuaian data fisik dan digital tanpa diskrepansi.</span>
+                                <span class="lang-en">Verified election tally data prior to system submission to ensure
+                                    zero discrepancy between physical records and digital logs.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Mendukung administrasi, dokumentasi, dan proses rekapitulasi hasil
+                                    pemilu.</span>
+                                <span class="lang-en">Assisted administration, documentation, and ballot outcome
+                                    recapitulation processes.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Berkoordinasi dalam pengumpulan dan validasi data selama
+                                    pelaksanaan pemilu bersama tim KPPS.</span>
+                                <span class="lang-en">Coordinated data collection and validation throughout election
+                                    execution with the local polling committee.</span>
+                            </li>
+                        </ul>
+
+                        <!-- Sirekap KPU Gallery Preview -->
+                        <div class="experience-gallery">
+                            <div class="gallery-item" onclick="openImageModal('gambar/sirekap-tps-1.jpg')"
+                                title="Dokumentasi Rekapitulasi Berkas C.Hasil di TPS Pemilu">
+                                <img src="gambar/sirekap-tps-1.jpg"
+                                    alt="Dokumentasi Rekapitulasi Berkas C.Hasil di TPS Pemilu" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/sirekap-bimtek-kpps.jpg')"
+                                title="Bimbingan Teknis (Bimtek) Sirekap & KPPS KPU">
+                                <img src="gambar/sirekap-bimtek-kpps.jpg"
+                                    alt="Bimbingan Teknis (Bimtek) Sirekap & KPPS KPU" loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/sirekap-tps-2.jpg')"
+                                title="Proses Pengolahan Data & Penghitungan Suara TPS">
+                                <img src="gambar/sirekap-tps-2.jpg"
+                                    alt="Proses Pengolahan Data & Penghitungan Suara TPS" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3: Program Kartu Prakerja -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">Mei 2024</span>
+
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>
+                                <span class="lang-id">Peserta Pelatihan Desain Grafis & Desain Komunikasi Visual</span>
+                                <span class="lang-en">Graphic Design & Visual Communication Trainee</span>
+                            </h3>
+                            <h4>
+                                <i class="fas fa-palette"></i>
+                                Program Kartu Prakerja, Padang
+                            </h4>
+                        </div>
+
+                        <p class="timeline-desc">
+                            <span class="lang-id">Pelatihan intensif berbasis proyek dalam merancang komunikasi visual
+                                modern, tata letak antarmuka, dan identitas visual digital.</span>
+                            <span class="lang-en">Project-based intensive training in crafting modern visual
+                                communications, UI layouts, and digital visual brand identities.</span>
+                        </p>
+
+                        <ul class="timeline-bullets">
+                            <li>
+                                <span class="lang-id">Mempelajari dan menerapkan prinsip desain grafis, branding,
+                                    tipografi, layout, dan teori warna menggunakan <strong>Canva</strong> melalui
+                                    pelatihan berbasis proyek nyata.</span>
+                                <span class="lang-en">Mastered and applied core graphic design principles, branding,
+                                    typography, layout hierarchy, and color theory via <strong>Canva</strong> in
+                                    project-based training.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Membuat <strong>10+ desain visual</strong> berupa poster, konten
+                                    media sosial, presentasi, dan materi promosi digital sebagai implementasi hasil
+                                    pembelajaran.</span>
+                                <span class="lang-en">Produced <strong>10+ visual assets</strong> including posters,
+                                    social media graphics, presentations, and digital promotional materials.</span>
+                            </li>
+                            <li>
+                                <span class="lang-id">Menghasilkan proyek desain digital berbasis komunikasi visual dan
+                                    branding guna mendukung komunikasi dan kebutuhan estetika antarmuka sistem.</span>
+                                <span class="lang-en">Delivered visual communication design projects to support user
+                                    presentation and clean digital interface aesthetics.</span>
+                            </li>
+                        </ul>
+
+                        <!-- Graphic Design Gallery Preview -->
+                        <div class="experience-gallery">
+                            <div class="gallery-item" onclick="openImageModal('gambar/desain-logo-walet.png')"
+                                title="Desain Logo Brand - home's walet Ayah">
+                                <img src="gambar/desain-logo-walet.png" alt="Desain Logo Brand - home's walet Ayah"
+                                    loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/desain-pempek.png')"
+                                title="Desain Poster Promosi - Pempek Ikan Tengiri">
+                                <img src="gambar/desain-pempek.png" alt="Desain Poster Promosi - Pempek Ikan Tengiri"
+                                    loading="lazy">
+                            </div>
+                            <div class="gallery-item" onclick="openImageModal('gambar/desain-choco-cookies.png')"
+                                title="Desain Poster Produk - Choco Cookies Rusi Cake">
+                                <img src="gambar/desain-choco-cookies.png"
+                                    alt="Desain Poster Produk - Choco Cookies Rusi Cake" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SECTION
+         ========================================================================== -->
+    <section id="projects" class="projects section-container">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    <span class="lang-id">Portofolio Karya</span>
+                    <span class="lang-en">Selected Works</span>
+                </span>
+                <h2>
+                    <span class="lang-id"><span class="highlight">Proyek</span> Unggulan</span>
+                    <span class="lang-en">Featured <span class="highlight">Projects</span></span>
+                </h2>
+                <p>
+                    <span class="lang-id">Berbagai proyek aplikasi, riset bisnis teknologi, dan sistem informasi yang
+                        telah diselesaikan. Klik kartu untuk melihat detail & galeri.</span>
+                    <span class="lang-en">A selection of digital platforms, fintech concepts, and mobile apps. Click any
+                        card to explore full interactive details & media.</span>
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Sweet & Crust POS & Bakery Management (UI/UX Design) -->
+                <div class="project-card" onclick="openProjectModal('sweetandcrust')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/sweet-and-crust.jpg"
+                            alt="Sistem POS & Bakery Management – Sweet & Crust" loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Sistem POS & Bakery Management – Sweet & Crust (UI/UX Design)</span>
+                            <span class="lang-en">Bakery POS & Management System – Sweet & Crust (UI/UX Design)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Desain antarmuka sistem POS bakery berbasis UI/UX (Figma) dengan modul kasir cepat, katalog kue dinamis, analitik omzet real-time, dan manajemen tim multi-role.</span>
+                            <span class="lang-en">Bakery POS UI/UX system design built with Figma featuring fast cashier checkout, dynamic cake catalog, real-time revenue analytics, and multi-role team management.</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>Figma</span>
+                            <span>UI/UX Design</span>
+                            <span>Point of Sale (POS)</span>
+                            <span>Bakery Management</span>
+                            <span>Product Planning</span>
+                            <span>Market Research</span>
+                            <span>Interactive Prototype</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Waroeng Ngemil POS & Mobile Ordering (Mobile Programming) -->
+                <div class="project-card" onclick="openProjectModal('waroengngemil')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/waroeng-ngemil.png"
+                            alt="Sistem Kasir & Pemesanan F&B – Waroeng Ngemil" loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Sistem Kasir & Pemesanan F&B – Waroeng Ngemil (Mobile Programming)</span>
+                            <span class="lang-en">F&B POS & Ordering System – Waroeng Ngemil (Mobile Programming)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Sistem kasir dan pemesanan F&B berbasis mobile (Flutter & Firebase) dengan modul katalog menu dinamis, keranjang pesanan interaktif, kalkulasi otomatis, dan struk digital real-time.</span>
+                            <span class="lang-en">Mobile-based F&B POS and ordering system built with Flutter & Firebase featuring dynamic menu catalog, interactive order cart, automated calculation, and real-time digital receipts.</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>Firebase Auth</span>
+                            <span>Realtime DB</span>
+                            <span>Point of Sale (POS)</span>
+                            <span>Mobile Programming</span>
+                            <span>UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: PT. Grafika Jaya Sumbar (Skripsi) -->
+                <div class="project-card" onclick="openProjectModal('grafikajaya')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/grafika-jaya-sumbar.png"
+                            alt="Sistem Informasi Manajemen Percetakan & Penjualan – PT. Grafika Jaya Sumbar"
+                            loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Sistem Manajemen Percetakan & Penjualan – PT. Grafika Jaya Sumbar
+                                (Skripsi)</span>
+                            <span class="lang-en">Printing & Sales Management System – PT. Grafika Jaya Sumbar
+                                (Thesis)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Sistem informasi manajemen percetakan berbasis web (PHP OOP & MySQL)
+                                dengan modul kasir POS, kontrol stok otomatis, verifikasi pembayaran, dan analitik
+                                penjualan (Chart.js).</span>
+                            <span class="lang-en">Web-based printing management system built with PHP OOP & MySQL
+                                featuring POS cashier, automated inventory, payment verification, and sales analytics
+                                (Chart.js).</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>PHP Native (OOP)</span>
+                            <span>MySQL</span>
+                            <span>Bootstrap</span>
+                            <span>Chart.js</span>
+                            <span>DataTables</span>
+                            <span>SweetAlert</span>
+                            <span>POS System</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Sweet & Crust Web Laravel (Ujian Sertifikasi) -->
+                <div class="project-card" onclick="openProjectModal('sweetandcrustweb')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/sc-laravel-web.png"
+                            alt="Sweet & Crust – Web POS & Bakery Management (Laravel)" loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Sistem POS & Bakery Management Sweet & Crust – Web Laravel
+                                (Sertifikasi)</span>
+                            <span class="lang-en">Sweet & Crust POS & Bakery Management – Laravel Web App
+                                (Certification)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Sistem kasir dan manajemen operasional bakery berbasis Laravel & MySQL
+                                (Uji Kompetensi Web Programmer) dengan arsitektur MVC, multi-role auth, dan pelaporan
+                                omzet real-time.</span>
+                            <span class="lang-en">Web-based bakery POS and operations management system built with
+                                Laravel & MySQL (Web Programmer Certification) featuring MVC, multi-role auth, and
+                                real-time revenue analytics.</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>Laravel</span>
+                            <span>PHP & MySQL</span>
+                            <span>Bootstrap</span>
+                            <span>Point of Sale (POS)</span>
+                            <span>MVC Architecture</span>
+                            <span>Role-Based Auth</span>
+                            <span>CRUD Engine</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Apotek Asyifa (Back-Office) -->
+                <div class="project-card" onclick="openProjectModal('apotekasyifa')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/apotek-asyifa.jpg"
+                            alt="Sistem Manajemen Apotek & Inventaris – Apotek Asyifa" loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Sistem Manajemen Apotek & Inventaris – Apotek Asyifa (Back-Office)</span>
+                            <span class="lang-en">Pharmacy & Inventory Management System – Apotek Asyifa (Back-Office)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Sistem informasi manajemen apotek berbasis PHP & MySQL (Back-Office System) dengan modul inventaris obat, deteksi kedaluwarsa otomatis, log transaksi, dan analitik omzet (Chart.js).</span>
+                            <span class="lang-en">Web-based pharmacy management system built with PHP & MySQL (Back-Office System) featuring drug inventory, automated expiration alerts, transaction logging, and revenue analytics (Chart.js).</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>PHP & MySQL</span>
+                            <span>Bootstrap</span>
+                            <span>Chart.js</span>
+                            <span>DataTables</span>
+                            <span>Pharmacy Management</span>
+                            <span>Back-Office System</span>
+                            <span>Inventory Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: GoSwift -->
+                <div class="project-card" onclick="openProjectModal('goswift')">
+                    <div class="project-img-container">
+                        <img class="project-img" src="gambar/goswift.png"
+                            alt="Platform E-Tiket Bus GoSwift (GEMASTIK XVIII & EA IX)" loading="lazy">
+                        <div class="project-overlay-hint">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                            <span class="lang-id">Buka Detail</span>
+                            <span class="lang-en">View Details</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            <span class="lang-id">Platform E-Tiket Bus GoSwift (GEMASTIK XVIII & EA IX)</span>
+                            <span class="lang-en">Platform E-Tiket Bus GoSwift (GEMASTIK XVIII & EA IX)</span>
+                        </h3>
+                        <p>
+                            <span class="lang-id">Konsep platform E-Ticketing bus AKDP Sumbar (Finalis EA IX & GEMASTIK
+                                XVIII) dengan penyusunan BMC, analisis pasar, dan UI/UX interaktif.</span>
+                            <span class="lang-en">Digital AKDP bus e-ticketing platform concept (EA IX Finalist &
+                                GEMASTIK XVIII) with BMC formulation, market research, and UI/UX design.</span>
+                        </p>
+                        <div class="project-tags">
+                            <span>Figma</span>
+                            <span>Business Model Canvas (BMC)</span>
+                            <span>UI/UX Design</span>
+                            <span>Market Research</span>
+                            <span>Fintech Integration Concept</span>
+                            <span>Digital Payment System</span>
+                            <span>Product Planning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         CERTIFICATES & AWARDS SECTION
+         ========================================================================== -->
+    <section id="certificates" class="certificates section-container">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">
+                    <span class="lang-id">Penghargaan & Kredensial</span>
+                    <span class="lang-en">Credentials & Awards</span>
+                </span>
+                <h2>
+                    <span class="lang-id">Sertifikat & <span class="highlight">Penghargaan</span></span>
+                    <span class="lang-en">Certificates & <span class="highlight">Honors</span></span>
+                </h2>
+                <p>
+                    <span class="lang-id">Sertifikasi kelulusan magang instansi pemerintahan, tes kemahiran bahasa
+                        Inggris TOEFL, sertifikasi kompetensi internasional Huawei ICT Academy, serta pelatihan
+                        Prakerja.</span>
+                    <span class="lang-en">Government internship credentials, TOEFL English proficiency scores, Huawei
+                        ICT Academy international certifications, and Prakerja digital training.</span>
+                </p>
+            </div>
+
+            <div class="certificates-list">
+                <!-- Cert 1: TOEFL (May 2026) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-toefl.jpg')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-toefl.jpg"
+                            alt="Sertifikat TOEFL Prediction Test - English Tutorial Centre" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>
+                                <span class="lang-id">TOEFL Prediction Test – Score 460</span>
+                                <span class="lang-en">TOEFL Prediction Test – Score 460</span>
+                            </h3>
+                            <p>
+                                <span class="lang-id">English Tutorial Centre (ETC) &bull; Akreditasi Nasional &bull;
+                                    Mei 2026</span>
+                                <span class="lang-en">English Tutorial Centre (ETC) &bull; National Accreditation &bull;
+                                    May 2026</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2: Huawei Data Communication and Network (Nov 2025) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-datacom-network.png')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-huawei-datacom-network.png"
+                            alt="Sertifikat Huawei Data Communication and Network" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>Data Communication and Network</h3>
+                            <p>Huawei ICT Academy &bull; November 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 3: Huawei Python Programming Basics (Oct 2025) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-python.png')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-huawei-python.png"
+                            alt="Sertifikat Huawei Python Programming Basics" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>Python Programming Basics</h3>
+                            <p>Huawei ICT Academy &bull; Oktober 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 4: Huawei Algorithm and Program Design (Oct 2025) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-algorithm.png')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-huawei-algorithm.png"
+                            alt="Sertifikat Huawei Algorithm and Program Design" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>Algorithm and Program Design</h3>
+                            <p>Huawei ICT Academy &bull; Oktober 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 5: Huawei HCIP-Datacom Core Technology V1.0 (Oct 2025) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-hcip.png')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-huawei-hcip.png"
+                            alt="Sertifikat Huawei HCIP-Datacom Core Technology V1.0" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>HCIP-Datacom Core Technology V1.0</h3>
+                            <p>Huawei ICT Academy &bull; Oktober 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 6: Magang Pemprov Sumbar (May 2025) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-magang.jpg')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-magang.jpg"
+                            alt="Sertifikat Kelulusan Magang Biro Administrasi Pembangunan Pemprov Sumbar"
+                            loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-building-columns"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>
+                                <span class="lang-id">Sertifikat Kelulusan Magang Administrasi Pembangunan</span>
+                                <span class="lang-en">Government Development Administration Internship
+                                    Certificate</span>
+                            </h3>
+                            <p>
+                                <span class="lang-id">Biro Administrasi Pembangunan Setda Prov. Sumatera Barat &bull;
+                                    Mei 2025</span>
+                                <span class="lang-en">Regional Development Administration Bureau, West Sumatra
+                                    Provincial Govt &bull; May 2025</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 7: Prakerja Vokraf Desain Grafis (May 2024) -->
+                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-prakerja-vokraf.png')">
+                    <div class="cert-image-container">
+                        <img class="cert-image" src="gambar/sertifikat-prakerja-vokraf.png"
+                            alt="Sertifikat Pelatihan Kartu Prakerja Desain Grafis Canva - Vokraf" loading="lazy">
+                    </div>
+                    <div class="cert-details">
+                        <div class="cert-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="cert-text">
+                            <h3>
+                                <span class="lang-id">Sertifikasi Desain Grafis Canva bagi UMKM</span>
+                                <span class="lang-en">Canva Graphic Design for MSMEs Certification</span>
+                            </h3>
+                            <p>
+                                <span class="lang-id">Vokraf & Kartu Prakerja (Kemenko Perekonomian RI) &bull; Mei
+                                    2024</span>
+                                <span class="lang-en">Vokraf & Prakerja (Coordinating Ministry for Economic Affairs RI)
+                                    &bull; May 2024</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER & CONTACT
+         ========================================================================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h2 class="footer-logo">
+                    <span>Rusi</span> <span class="highlight">Adristi</span><span class="logo-dot"></span>
+                </h2>
+                <p class="footer-desc">
+                    <span class="lang-id">Menghubungkan kebutuhan proses bisnis dan kapabilitas rekayasa teknologi
+                        digital modern.</span>
+                    <span class="lang-en">Bridging business strategy with state-of-the-art software engineering and user
+                        experiences.</span>
+                </p>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/rusi-adristi-740655408" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn" title="LinkedIn: Rusi Adristi">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/rusiadristi" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub" title="GitHub: @rusiadristi">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:rusiadristi0301@gmail.com" aria-label="Email"
+                        title="Email: rusiadristi0301@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/6285370009219" target="_blank" rel="noopener noreferrer"
+                        aria-label="WhatsApp" title="WhatsApp: +62 853-7000-9219">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; <span id="year"></span> Rusi Adristi. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         MODALS (CV, PROJECT DETAIL WITH CAROUSEL, IMAGE LIGHTBOX)
+         ========================================================================== -->
+
+    <!-- CV Modal -->
+    <div id="cvModal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeCVModal()" aria-label="Tutup Modal">&times;</button>
+            <iframe id="cvFrame" src="" title="CV Preview"></iframe>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal (Pop-up with Dynamic Carousel) -->
+    <div id="projectModal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content project-modal-content">
+            <button class="close-modal" onclick="closeProjectModal()" aria-label="Tutup Modal">&times;</button>
+            <div class="project-modal-body">
+                <!-- Left: Media Carousel & Features -->
+                <div class="project-modal-media" id="projectModalMedia">
+                    <div class="carousel-container">
+                        <div class="carousel-slides" id="carouselSlides">
+                            <!-- Slides dynamically inserted via script.js -->
+                        </div>
+                        <button class="carousel-btn prev-btn" id="carouselPrevBtn" onclick="moveSlide(-1)"
+                            aria-label="Slide Sebelumnya">&#10094;</button>
+                        <button class="carousel-btn next-btn" id="carouselNextBtn" onclick="moveSlide(1)"
+                            aria-label="Slide Berikutnya">&#10095;</button>
+                        <div class="carousel-dots" id="carouselDots">
+                            <!-- Dots dynamically inserted via script.js -->
+                        </div>
+                    </div>
+                    <!-- Left Features Container -->
+                    <div class="project-modal-features-left" id="projectModalFeaturesLeft"></div>
+                </div>
+
+                <!-- Right: Text Description & Specs -->
+                <div class="project-modal-info">
+                    <h2 id="projectModalTitle"></h2>
+                    <div class="project-modal-tags" id="projectModalTags"></div>
+                    <div class="project-modal-desc" id="projectModalDesc"></div>
+                    <!-- Right Features Container -->
+                    <div class="project-modal-features-right" id="projectModalFeaturesRight"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="modal" onclick="closeImageModal()" role="dialog" aria-modal="true">
+        <button class="close-modal" aria-label="Tutup Lightbox">&times;</button>
+        <img id="imgModalContent" alt="Pratinjau Gambar Penuh">
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
