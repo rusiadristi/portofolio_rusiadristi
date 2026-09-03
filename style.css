@@ -548,11 +548,13 @@ img {
     line-height: 1.7;
     margin-bottom: 22px;
     max-width: 95%;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .hero-description strong {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: normal;
 }
 
 .hero-buttons {
@@ -697,6 +699,8 @@ img {
     line-height: 1.6;
     margin-bottom: 16px;
     flex-grow: 1;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .skill-tags {
@@ -833,6 +837,8 @@ img {
     line-height: 1.6;
     margin-bottom: 14px;
     font-size: 0.92rem;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .timeline-bullets {
@@ -848,6 +854,8 @@ img {
     color: var(--text-secondary);
     font-size: 0.91rem;
     line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .timeline-bullets li::before {
@@ -859,7 +867,7 @@ img {
     font-size: 1rem;
 }
 
-/* Internship Photo Gallery */
+/* Experience Photo Gallery */
 .experience-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -877,6 +885,7 @@ img {
     border: 1px solid var(--glass-border);
     background: var(--surface-color-light);
     position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
 }
 
@@ -884,6 +893,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: var(--transition);
 }
 
@@ -893,23 +903,25 @@ img {
     font-weight: 900;
     position: absolute;
     inset: 0;
-    background: rgba(56, 19, 41, 0.45);
+    background: rgba(56, 19, 41, 0.5);
+    backdrop-filter: blur(2px);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     opacity: 0;
     transition: var(--transition);
 }
 
 .gallery-item:hover {
     border-color: var(--primary-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(162, 59, 114, 0.25);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .gallery-item:hover::after {
@@ -1018,6 +1030,8 @@ img {
     line-height: 1.6;
     margin-bottom: 16px;
     flex-grow: 1;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .project-tags {
@@ -1133,6 +1147,8 @@ img {
     color: var(--text-secondary);
     font-size: 0.84rem;
     line-height: 1.45;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 /* ==========================================================================
@@ -1337,14 +1353,19 @@ footer {
     color: var(--text-secondary);
     font-size: 0.92rem;
     line-height: 1.65;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .project-modal-desc p {
     margin-bottom: 10px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .project-modal-desc strong {
     color: var(--text-primary);
+    font-weight: normal;
 }
 
 .project-modal-desc ul {
@@ -1358,6 +1379,8 @@ footer {
 .project-modal-desc li {
     list-style-type: disc;
     color: var(--text-secondary);
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 /* Carousel in Project Modal */
@@ -1604,9 +1627,10 @@ footer {
     }
     .skills-grid,
     .projects-grid,
-    .certificates-list {
+    .certificates-list,
+    .experience-gallery {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
     }
     .project-modal-content {
         width: 95%;
