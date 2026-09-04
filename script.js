@@ -875,16 +875,18 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================================
    CV VIEWER MODAL
    ========================================================================== */
-function openCVModal(pdfUrl) {
+function openCVModal(pdfUrl = 'pdf/CV_Rusi_Adristi.pdf') {
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
     const downloadBtn = document.getElementById('cvDownloadBtn');
     const openNewTabBtn = document.getElementById('cvOpenNewTabBtn');
 
+    const targetUrl = pdfUrl || 'pdf/CV_Rusi_Adristi.pdf';
+
     if (modal && frame) {
-        frame.src = pdfUrl;
-        if (downloadBtn) downloadBtn.href = pdfUrl;
-        if (openNewTabBtn) openNewTabBtn.href = pdfUrl;
+        frame.src = targetUrl;
+        if (downloadBtn) downloadBtn.href = targetUrl;
+        if (openNewTabBtn) openNewTabBtn.href = targetUrl;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }
