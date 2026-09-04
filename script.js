@@ -881,12 +881,13 @@ function openCVModal(pdfUrl = 'pdf/CV_Rusi_Adristi.pdf') {
     const downloadBtn = document.getElementById('cvDownloadBtn');
     const openNewTabBtn = document.getElementById('cvOpenNewTabBtn');
 
-    const targetUrl = pdfUrl || 'pdf/CV_Rusi_Adristi.pdf';
+    const cleanUrl = pdfUrl || 'pdf/CV_Rusi_Adristi.pdf';
+    const viewerUrl = cleanUrl.includes('#') ? cleanUrl : `${cleanUrl}#view=FitH`;
 
     if (modal && frame) {
-        frame.src = targetUrl;
-        if (downloadBtn) downloadBtn.href = targetUrl;
-        if (openNewTabBtn) openNewTabBtn.href = targetUrl;
+        frame.src = viewerUrl;
+        if (downloadBtn) downloadBtn.href = cleanUrl;
+        if (openNewTabBtn) openNewTabBtn.href = cleanUrl;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }

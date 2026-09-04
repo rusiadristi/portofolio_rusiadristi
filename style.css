@@ -1282,30 +1282,43 @@ footer {
     transform: rotate(90deg);
 }
 
-/* CV Modal Styling */
+/* CV Modal Styling - True Fullscreen */
+#cvModal {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
 #cvModal .modal-content.cv-modal-content {
-    width: 92%;
-    max-width: 1000px;
-    height: 92vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    overflow: hidden;
-    background: #ffffff;
-    border-radius: var(--radius-lg);
-    box-shadow: 0 25px 60px rgba(90, 30, 60, 0.25);
-    margin: 4vh auto;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    background: #323639;
 }
 
 .cv-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 20px;
+    height: 56px;
+    padding: 0 20px;
     background: #ffffff;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     flex-shrink: 0;
     gap: 12px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .cv-modal-title {
@@ -1315,6 +1328,7 @@ footer {
     font-weight: 700;
     font-size: 1.05rem;
     color: var(--text-primary);
+    font-family: var(--font-heading), sans-serif;
 }
 
 .cv-modal-title i {
@@ -1332,7 +1346,7 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border-radius: var(--radius-full);
     font-size: 0.84rem;
     font-weight: 600;
@@ -1341,6 +1355,7 @@ footer {
     color: var(--primary-color);
     border: 1px solid #fbcfe8;
     transition: var(--transition);
+    font-family: var(--font-main), sans-serif;
 }
 
 .btn-cv-action:hover {
@@ -1359,17 +1374,42 @@ footer {
     position: static !important;
     transform: none !important;
     flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fdf2f8;
+    border: 1px solid #fbcfe8;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cv-close-btn:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: rotate(90deg) !important;
 }
 
 .cv-frame-wrapper {
     flex: 1;
+    min-height: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 56px);
+    height: calc(100dvh - 56px);
     position: relative;
-    background: #fdf4f8;
+    background: #323639;
+    overflow: hidden;
 }
 
 #cvFrame {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
@@ -1378,13 +1418,16 @@ footer {
 
 @media (max-width: 640px) {
     #cvModal .modal-content.cv-modal-content {
-        width: 96%;
-        height: 94vh;
-        margin: 3vh auto;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
     }
 
     .cv-modal-header {
-        padding: 10px 12px;
+        height: 52px;
+        padding: 0 12px;
     }
 
     .cv-modal-title span {
