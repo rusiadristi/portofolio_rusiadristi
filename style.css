@@ -1283,19 +1283,120 @@ footer {
 }
 
 /* CV Modal Styling */
-#cvModal .modal-content {
-    width: 90%;
-    max-width: 980px;
-    height: 90vh;
+#cvModal .modal-content.cv-modal-content {
+    width: 92%;
+    max-width: 1000px;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
     padding: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(90, 30, 60, 0.25);
+    margin: 4vh auto;
+}
+
+.cv-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--glass-border);
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+.cv-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.cv-modal-title i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.cv-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cv-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: #fdf2f8;
+    color: var(--primary-color);
+    border: 1px solid #fbcfe8;
+    transition: var(--transition);
+}
+
+.btn-cv-action:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.2);
+}
+
+.btn-cv-action i {
+    font-size: 0.85rem;
+}
+
+.cv-close-btn {
+    position: static !important;
+    transform: none !important;
+    flex-shrink: 0;
+}
+
+.cv-frame-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #fdf4f8;
 }
 
 #cvFrame {
     width: 100%;
     height: 100%;
     border: none;
-    background: #fce7f3;
+    display: block;
 }
+
+@media (max-width: 640px) {
+    #cvModal .modal-content.cv-modal-content {
+        width: 96%;
+        height: 94vh;
+        margin: 3vh auto;
+    }
+
+    .cv-modal-header {
+        padding: 10px 12px;
+    }
+
+    .cv-modal-title span {
+        display: none;
+    }
+
+    .btn-cv-action {
+        padding: 5px 10px;
+        font-size: 0.78rem;
+    }
+}
+
 
 /* Project Detail Modal Styling */
 .project-modal-content {

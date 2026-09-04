@@ -878,9 +878,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function openCVModal(pdfUrl) {
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
+    const downloadBtn = document.getElementById('cvDownloadBtn');
+    const openNewTabBtn = document.getElementById('cvOpenNewTabBtn');
 
     if (modal && frame) {
         frame.src = pdfUrl;
+        if (downloadBtn) downloadBtn.href = pdfUrl;
+        if (openNewTabBtn) openNewTabBtn.href = pdfUrl;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }

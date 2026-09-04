@@ -189,7 +189,7 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <button onclick="openCVModal('pdf/CV%20Rusi%20Adristi%20(1)r.pdf')" class="btn btn-primary">
+                    <button onclick="openCVModal('pdf/CV%20Rusi%20Adristi%20(1).pdf')" class="btn btn-primary">
                         <i class="fas fa-file-pdf"></i>
                         <span class="lang-id">Lihat CV</span>
                         <span class="lang-en">View CV</span>
@@ -1104,9 +1104,29 @@
 
     <!-- CV Modal -->
     <div id="cvModal" class="modal" role="dialog" aria-modal="true">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeCVModal()" aria-label="Tutup Modal">&times;</button>
-            <iframe id="cvFrame" src="" title="CV Preview"></iframe>
+        <div class="modal-content cv-modal-content">
+            <div class="cv-modal-header">
+                <div class="cv-modal-title">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Curriculum Vitae - Rusi Adristi</span>
+                </div>
+                <div class="cv-modal-actions">
+                    <a id="cvDownloadBtn" href="pdf/CV%20Rusi%20Adristi%20(1).pdf" download="CV_Rusi_Adristi.pdf" class="btn-cv-action" target="_blank" rel="noopener noreferrer" title="Unduh File PDF">
+                        <i class="fas fa-download"></i>
+                        <span class="lang-id">Unduh CV</span>
+                        <span class="lang-en">Download CV</span>
+                    </a>
+                    <a id="cvOpenNewTabBtn" href="pdf/CV%20Rusi%20Adristi%20(1).pdf" target="_blank" rel="noopener noreferrer" class="btn-cv-action" title="Buka PDF di Tab Baru">
+                        <i class="fas fa-arrow-up-right-from-square"></i>
+                        <span class="lang-id">Tab Baru</span>
+                        <span class="lang-en">New Tab</span>
+                    </a>
+                    <button class="close-modal cv-close-btn" onclick="closeCVModal()" aria-label="Tutup Modal">&times;</button>
+                </div>
+            </div>
+            <div class="cv-frame-wrapper">
+                <iframe id="cvFrame" src="" title="CV Preview"></iframe>
+            </div>
         </div>
     </div>
 
