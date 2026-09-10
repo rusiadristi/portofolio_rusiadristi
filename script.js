@@ -198,7 +198,8 @@ const projectsData = {
             "gambar/sc-registrasi.png",
             "gambar/sc-katalog.png",
             "gambar/sc-laporan-omzet.png",
-            "gambar/sc-kelola-katalog-mobile.png"
+            "gambar/sc-kelola-katalog-mobile.png",
+            "gambar/sc-kelola-staf-mobile.png"
         ],
         descId: `
             <p>Sweet & Crust merupakan konsep platform <em>Point of Sale (POS) & Management for Modern Bakeries</em> berbasis mobile yang dirancang di Figma untuk mendukung modernisasi operasional toko roti. Proyek ini mencakup perancangan antarmuka pengguna (UI/UX), riset kebutuhan operasional toko bakery, penyusunan alur kasir terintegrasi (<em>seamless cashier interface</em>), serta perencanaan fitur pelaporan omzet real-time dan manajemen multi-user role. Solusi yang dirancang bertujuan membantu pemilik bakery dan staf dalam efisiensi pencatatan transaksi, katalog varian kue, pengelolaan stok, dan pemantauan performa bisnis secara terintegrasi.</p>
