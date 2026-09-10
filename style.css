@@ -596,6 +596,50 @@ img {
     gap: 12px;
 }
 
+/* Modern Hero Stats Strip - Clean Minimalist Elegance */
+.hero-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 22px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(217, 38, 98, 0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px -8px rgba(56, 19, 41, 0.05);
+}
+
+.hero-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+}
+
+.hero-stat-label {
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.2px;
+    margin-top: 2px;
+}
+
+.hero-stat-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(217, 38, 98, 0.14);
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -621,6 +665,39 @@ img {
     transform: translateY(-6px);
     border-color: rgba(217, 38, 98, 0.35);
     box-shadow: 0 26px 55px -12px rgba(217, 38, 98, 0.18);
+}
+
+/* Dual Floating Badges */
+.profile-badge-top {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(217, 38, 98, 0.16);
+    box-shadow: 0 10px 25px -5px rgba(56, 19, 41, 0.1);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 5;
+    animation: floatBadgeTop 5s ease-in-out infinite alternate;
+}
+
+.profile-badge-top i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+@keyframes floatBadgeTop {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
 }
 
 .profile-img-container {
@@ -664,6 +741,16 @@ img {
     align-items: center;
     gap: 6px;
     z-index: 5;
+}
+
+.badge-dot-live {
+    width: 7px;
+    height: 7px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    animation: pulseDot 2s infinite;
 }
 
 /* ==========================================================================
@@ -988,6 +1075,77 @@ img {
    ========================================================================== */
 .projects {
     position: relative;
+}
+
+/* Project Filter Tabs - Refined Segmented Control */
+.project-filter-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 18px;
+    border-radius: var(--radius-full);
+    background: #ffffff;
+    border: 1px solid rgba(217, 38, 98, 0.14);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(56, 19, 41, 0.03);
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    color: var(--primary-color);
+    border-color: rgba(217, 38, 98, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(217, 38, 98, 0.1);
+}
+
+.filter-btn.active {
+    background: var(--gradient);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 6px 18px -2px rgba(217, 38, 98, 0.35);
+}
+
+.filter-btn.active i {
+    color: #ffffff;
+}
+
+.filter-btn i {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+/* Filter Transitions */
+.project-card.filter-hide {
+    display: none !important;
+}
+
+.project-card.filter-show {
+    animation: projectFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes projectFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .projects-grid {
@@ -1734,6 +1892,44 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
+/* Floating Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid rgba(217, 38, 98, 0.18);
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px -4px rgba(56, 19, 41, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 990;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--gradient);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -4px rgba(217, 38, 98, 0.35);
+}
+
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES (HP, TABLET, LAPTOP, DESKTOP)
    ========================================================================== */
@@ -1851,5 +2047,42 @@ footer {
     }
     .hero-buttons {
         flex-direction: column;
+    }
+    .hero-stats {
+        width: 100%;
+        justify-content: space-around;
+        gap: 10px;
+        padding: 10px 14px;
+    }
+    .hero-stat-number {
+        font-size: 1.2rem;
+    }
+    .hero-stat-label {
+        font-size: 0.7rem;
+    }
+    .profile-badge-top {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+        top: -10px;
+        left: -8px;
+    }
+    .profile-floating-badge {
+        font-size: 0.72rem;
+        padding: 5px 12px;
+        bottom: -10px;
+    }
+    .project-filter-tabs {
+        gap: 6px;
+    }
+    .filter-btn {
+        padding: 5px 12px;
+        font-size: 0.78rem;
+    }
+    .back-to-top {
+        bottom: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        font-size: 0.88rem;
     }
 }

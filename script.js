@@ -14,11 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Navbar Background Blur & Scroll State
     const navbar = document.getElementById('navbar');
+    const backToTopBtn = document.getElementById('backToTop');
     const handleScroll = () => {
         if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
+        }
+
+        if (backToTopBtn) {
+            if (window.scrollY > 350) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
         }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -942,3 +951,37 @@ window.addEventListener('click', (event) => {
     if (event.target === projectModal) closeProjectModal();
     if (event.target === imageModal) closeImageModal();
 });
+
+/* ==========================================================================
+   PROJECT FILTERING (ALL, UI/UX, WEB, MOBILE)
+   ========================================================================== */
+function filterProjects(category, clickedBtn) {
+    const filterButtons = document.querySelectorAll('.project-filter-tabs .filter-btn');
+    const projectCards = document.querySelectorAll('#projectsGrid .project-card');
+
+    // Toggle active state on filter buttons
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    if (clickedBtn) clickedBtn.classList.add('active');
+
+    // Filter cards with smooth animation
+    projectCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+            card.classList.remove('filter-hide');
+            card.classList.add('filter-show');
+        } else {
+            card.classList.add('filter-hide');
+            card.classList.remove('filter-show');
+        }
+    });
+}
+
+/* ==========================================================================
+   SMOOTH SCROLL TO TOP
+   ========================================================================== */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
