@@ -28,10 +28,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=2.2">
+    <link rel="stylesheet" href="style.css?v=2.3">
 </head>
 
 <body>
+
+    <!-- Top Scroll Progress Indicator Bar -->
+    <div id="scrollProgress" class="scroll-progress-bar" aria-hidden="true"></div>
 
     <!-- ==========================================================================
          NAVBAR
@@ -138,6 +141,8 @@
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
+            <div class="ambient-glow glow-1"></div>
+            <div class="ambient-glow glow-2"></div>
         </div>
 
         <div class="container hero-container">
@@ -208,7 +213,7 @@
                 </div>
 
                 <!-- Modern Hero Stats Strip -->
-                <div class="hero-stats">
+                <div class="hero-stats reveal-on-scroll">
                     <div class="hero-stat-item">
                         <span class="hero-stat-number">6+</span>
                         <span class="hero-stat-label">
@@ -236,7 +241,7 @@
             </div>
 
             <div class="hero-image">
-                <div class="profile-card">
+                <div class="profile-card reveal-on-scroll">
                     <div class="profile-badge-top">
                         <i class="fas fa-graduation-cap"></i>
                         <span class="lang-id">S1 Sistem Informasi</span>
@@ -261,7 +266,7 @@
          ========================================================================== -->
     <section id="skills" class="skills section-container">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <span class="section-badge">
                     <span class="lang-id">Kompetensi</span>
                     <span class="lang-en">Competencies</span>
@@ -280,7 +285,7 @@
 
             <div class="skills-grid">
                 <!-- Skill 1: Business Analyst -->
-                <div class="skill-card">
+                <div class="skill-card reveal-on-scroll">
                     <div class="skill-card-header">
                         <div class="skill-hexagon-icon">
                             <i class="fas fa-chart-line"></i>
@@ -308,7 +313,7 @@
                 </div>
 
                 <!-- Skill 2: UI/UX Design -->
-                <div class="skill-card">
+                <div class="skill-card reveal-on-scroll">
                     <div class="skill-card-header">
                         <div class="skill-hexagon-icon">
                             <i class="fas fa-paint-brush"></i>
@@ -332,7 +337,7 @@
                 </div>
 
                 <!-- Skill 3: Mobile Development -->
-                <div class="skill-card">
+                <div class="skill-card reveal-on-scroll">
                     <div class="skill-card-header">
                         <div class="skill-hexagon-icon">
                             <i class="fas fa-mobile-screen-button"></i>
@@ -357,7 +362,7 @@
                 </div>
 
                 <!-- Skill 4: Web Development -->
-                <div class="skill-card">
+                <div class="skill-card reveal-on-scroll">
                     <div class="skill-card-header">
                         <div class="skill-hexagon-icon">
                             <i class="fas fa-code"></i>
@@ -392,7 +397,7 @@
          ========================================================================== -->
     <section id="experience" class="experience section-container">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <span class="section-badge">
                     <span class="lang-id">Perjalanan Profesional</span>
                     <span class="lang-en">Career Journey</span>
@@ -411,7 +416,7 @@
 
             <div class="timeline">
                 <!-- Experience 1: Pelatihan Web Programmer (Program Pemerintah) -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <span class="timeline-date">
                         <span class="lang-id">Agu 2026 - Sep 2026</span>
@@ -484,7 +489,7 @@
                 </div>
 
                 <!-- Experience 2: Biro Administrasi Pembangunan -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <span class="timeline-date">Apr 2025 - Mei 2025</span>
 
@@ -551,7 +556,7 @@
                 </div>
 
                 <!-- Experience 2: KPU Padang -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <span class="timeline-date">Nov 2024</span>
 
@@ -625,7 +630,7 @@
                 </div>
 
                 <!-- Experience 3: Program Kartu Prakerja -->
-                <div class="timeline-item">
+                <div class="timeline-item reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <span class="timeline-date">Mei 2024</span>
 
@@ -701,7 +706,7 @@
          ========================================================================== -->
     <section id="projects" class="projects section-container">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <span class="section-badge">
                     <span class="lang-id">Portofolio Karya</span>
                     <span class="lang-en">Selected Works</span>
@@ -719,7 +724,7 @@
             </div>
 
             <!-- Interactive Category Filter Tabs -->
-            <div class="project-filter-tabs">
+            <div class="project-filter-tabs reveal-on-scroll">
                 <button class="filter-btn active" data-filter="all" onclick="filterProjects('all', this)">
                     <i class="fas fa-border-all"></i>
                     <span class="lang-id">Semua</span>
@@ -741,7 +746,7 @@
 
             <div class="projects-grid" id="projectsGrid">
                 <!-- Project 1: Sweet & Crust POS & Bakery Management (UI/UX Design) -->
-                <div class="project-card" data-category="uiux" onclick="openProjectModal('sweetandcrust')">
+                <div class="project-card reveal-on-scroll" data-category="uiux" onclick="openProjectModal('sweetandcrust')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/sweet-and-crust.jpg"
                             alt="Sistem POS & Bakery Management – Sweet & Crust" loading="lazy">
@@ -773,7 +778,7 @@
                 </div>
 
                 <!-- Project 2: Waroeng Ngemil POS & Mobile Ordering (Mobile Programming) -->
-                <div class="project-card" data-category="mobile" onclick="openProjectModal('waroengngemil')">
+                <div class="project-card reveal-on-scroll" data-category="mobile" onclick="openProjectModal('waroengngemil')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/waroeng-ngemil.png"
                             alt="Sistem Kasir & Pemesanan F&B – Waroeng Ngemil" loading="lazy">
@@ -805,7 +810,7 @@
                 </div>
 
                 <!-- Project 3: PT. Grafika Jaya Sumbar (Skripsi) -->
-                <div class="project-card" data-category="web" onclick="openProjectModal('grafikajaya')">
+                <div class="project-card reveal-on-scroll" data-category="web" onclick="openProjectModal('grafikajaya')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/grafika-jaya-sumbar.png"
                             alt="Sistem Informasi Manajemen Percetakan & Penjualan – PT. Grafika Jaya Sumbar"
@@ -844,7 +849,7 @@
                 </div>
 
                 <!-- Project 4: Sweet & Crust Web Laravel (Ujian Sertifikasi) -->
-                <div class="project-card" data-category="web" onclick="openProjectModal('sweetandcrustweb')">
+                <div class="project-card reveal-on-scroll" data-category="web" onclick="openProjectModal('sweetandcrustweb')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/sc-laravel-web.png"
                             alt="Sweet & Crust – Web POS & Bakery Management (Laravel)" loading="lazy">
@@ -882,7 +887,7 @@
                 </div>
 
                 <!-- Project 5: Apotek Asyifa (Back-Office) -->
-                <div class="project-card" data-category="web" onclick="openProjectModal('apotekasyifa')">
+                <div class="project-card reveal-on-scroll" data-category="web" onclick="openProjectModal('apotekasyifa')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/apotek-asyifa.jpg"
                             alt="Sistem Manajemen Apotek & Inventaris – Apotek Asyifa" loading="lazy">
@@ -914,7 +919,7 @@
                 </div>
 
                 <!-- Project 6: Ranah Malala (Pelatihan Web Programmer) -->
-                <div class="project-card" data-category="web" onclick="openProjectModal('ranahmalala')">
+                <div class="project-card reveal-on-scroll" data-category="web" onclick="openProjectModal('ranahmalala')">
                     <div class="project-img-container">
                         <img class="project-img" src="gambar/ranah-malala.png"
                             alt="Website Pariwisata & Budaya Terpadu – Ranah Malala" loading="lazy">
@@ -953,7 +958,7 @@
          ========================================================================== -->
     <section id="certificates" class="certificates section-container">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <span class="section-badge">
                     <span class="lang-id">Penghargaan & Kredensial</span>
                     <span class="lang-en">Credentials & Awards</span>
@@ -973,7 +978,7 @@
 
             <div class="certificates-list">
                 <!-- Cert 1: TOEFL (May 2026) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-toefl.jpg')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-toefl.jpg')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-toefl.jpg"
                             alt="Sertifikat TOEFL Prediction Test - English Tutorial Centre" loading="lazy">
@@ -998,7 +1003,7 @@
                 </div>
 
                 <!-- Cert 2: Huawei Data Communication and Network (Nov 2025) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-datacom-network.png')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-huawei-datacom-network.png')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-huawei-datacom-network.png"
                             alt="Sertifikat Huawei Data Communication and Network" loading="lazy">
@@ -1015,7 +1020,7 @@
                 </div>
 
                 <!-- Cert 3: Huawei Python Programming Basics (Oct 2025) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-python.png')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-huawei-python.png')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-huawei-python.png"
                             alt="Sertifikat Huawei Python Programming Basics" loading="lazy">
@@ -1032,7 +1037,7 @@
                 </div>
 
                 <!-- Cert 4: Huawei Algorithm and Program Design (Oct 2025) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-algorithm.png')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-huawei-algorithm.png')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-huawei-algorithm.png"
                             alt="Sertifikat Huawei Algorithm and Program Design" loading="lazy">
@@ -1049,7 +1054,7 @@
                 </div>
 
                 <!-- Cert 5: Huawei HCIP-Datacom Core Technology V1.0 (Oct 2025) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-huawei-hcip.png')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-huawei-hcip.png')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-huawei-hcip.png"
                             alt="Sertifikat Huawei HCIP-Datacom Core Technology V1.0" loading="lazy">
@@ -1066,7 +1071,7 @@
                 </div>
 
                 <!-- Cert 6: Magang Pemprov Sumbar (May 2025) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-magang.jpg')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-magang.jpg')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-magang.jpg"
                             alt="Sertifikat Kelulusan Magang Biro Administrasi Pembangunan Pemprov Sumbar"
@@ -1093,7 +1098,7 @@
                 </div>
 
                 <!-- Cert 7: Prakerja Vokraf Desain Grafis (May 2024) -->
-                <div class="cert-item" onclick="openImageModal('gambar/sertifikat-prakerja-vokraf.png')">
+                <div class="cert-item reveal-on-scroll" onclick="openImageModal('gambar/sertifikat-prakerja-vokraf.png')">
                     <div class="cert-image-container">
                         <img class="cert-image" src="gambar/sertifikat-prakerja-vokraf.png"
                             alt="Sertifikat Pelatihan Kartu Prakerja Desain Grafis Canva - Vokraf" loading="lazy">
@@ -1125,7 +1130,7 @@
          ========================================================================== -->
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content reveal-on-scroll">
                 <h2 class="footer-logo">
                     <span>Rusi</span> <span class="highlight">Adristi</span><span class="logo-dot"></span>
                 </h2>
@@ -1153,6 +1158,25 @@
                         aria-label="WhatsApp" title="WhatsApp: +62 853-7000-9219">
                         <i class="fab fa-whatsapp"></i>
                     </a>
+                </div>
+
+                <!-- Quick Contact Action Bar -->
+                <div class="footer-cta-bar">
+                    <button class="footer-cta-btn" onclick="copyEmail('rusiadristi0301@gmail.com', this)" title="Salin Alamat Email">
+                        <i class="far fa-copy"></i>
+                        <span class="lang-id">Salin Email</span>
+                        <span class="lang-en">Copy Email</span>
+                    </button>
+                    <a href="https://wa.me/6285370009219?text=Halo%20Rusi,%20saya%20tertarik%20dengan%20portofolio%20Anda" target="_blank" rel="noopener noreferrer" class="footer-cta-btn" title="Kirim Pesan WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span class="lang-id">Kirim Pesan WhatsApp</span>
+                        <span class="lang-en">Direct WhatsApp</span>
+                    </a>
+                    <button onclick="openCVModal('pdf/CV_Rusi_Adristi.pdf')" class="footer-cta-btn primary" title="Lihat & Unduh CV">
+                        <i class="fas fa-file-pdf"></i>
+                        <span class="lang-id">Unduh CV Resmi</span>
+                        <span class="lang-en">Download Official CV</span>
+                    </button>
                 </div>
             </div>
 
@@ -1240,8 +1264,14 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Floating Toast Notification -->
+    <div id="toastNotification" class="toast-notification" role="status" aria-live="polite">
+        <i class="fas fa-circle-check"></i>
+        <span id="toastMessage">Email berhasil disalin ke clipboard!</span>
+    </div>
+
     <!-- Custom Scripts -->
-    <script src="script.js?v=2.2"></script>
+    <script src="script.js?v=2.3"></script>
 </body>
 
 </html>

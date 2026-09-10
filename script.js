@@ -12,22 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Navbar Background Blur & Scroll State
+    // 2. Navbar Background Blur & Scroll State & Top Scroll Progress
     const navbar = document.getElementById('navbar');
     const backToTopBtn = document.getElementById('backToTop');
+    const scrollProgress = document.getElementById('scrollProgress');
+
     const handleScroll = () => {
-        if (window.scrollY > 40) {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        if (scrollY > 40) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
 
         if (backToTopBtn) {
-            if (window.scrollY > 350) {
+            if (scrollY > 350) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
             }
+        }
+
+        if (scrollProgress) {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            scrollProgress.style.width = `${scrolled}%`;
         }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -100,7 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('portfolio_preferred_lang') || 'id';
     setLang(savedLang);
 
-    // 7. Keyboard Navigation (Escape key to close modals, Arrow keys for carousel)
+    // 7. Initialize Scroll Reveal Animations & 3D Tilt Sheen
+    initScrollReveal();
+    initCard3DTilt();
+
+    // 8. Keyboard Navigation (Escape key to close modals, Arrow keys for carousel)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeCVModal();
@@ -969,6 +984,7 @@ function filterProjects(category, clickedBtn) {
         if (category === 'all' || cardCategory === category) {
             card.classList.remove('filter-hide');
             card.classList.add('filter-show');
+            card.classList.add('is-revealed');
         } else {
             card.classList.add('filter-hide');
             card.classList.remove('filter-show');
@@ -984,4 +1000,136 @@ function scrollToTop() {
         top: 0,
         behavior: 'smooth'
     });
+}
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS (IntersectionObserver)
+   ========================================================================== */
+function initScrollReveal() {
+    const revealItems = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealItems.length) return;
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -25px 0px'
+        });
+
+        revealItems.forEach(item => observer.observe(item));
+    } else {
+        // Fallback for older browsers
+        revealItems.forEach(item => item.classList.add('is-revealed'));
+    }
+}
+
+/* ==========================================================================
+   INTERACTIVE 3D CARD TILT & SPOTLIGHT SHEEN
+   ========================================================================== */
+function initCard3DTilt() {
+    // Only activate on devices with fine pointer (mouse desktop)
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+            card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.25s ease';
+        });
+
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'transform 0.1s ease-out, box-shadow 0.25s ease';
+        });
+    });
+}
+
+/* ==========================================================================
+   COPY EMAIL TO CLIPBOARD WITH TOAST NOTIFICATION
+   ========================================================================== */
+let toastTimeout;
+
+function copyEmail(email, buttonElem) {
+    if (!email) email = 'rusiadristi0301@gmail.com';
+
+    const lang = document.documentElement.getAttribute('data-lang') || 'id';
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(email).then(() => {
+            const msg = lang === 'id' ? 'Email berhasil disalin ke clipboard!' : 'Email copied to clipboard!';
+            showToast(msg);
+            handleCopyFeedback(buttonElem, lang);
+        }).catch(() => {
+            fallbackCopy(email, lang, buttonElem);
+        });
+    } else {
+        fallbackCopy(email, lang, buttonElem);
+    }
+}
+
+function fallbackCopy(text, lang, buttonElem) {
+    const tempInput = document.createElement('input');
+    tempInput.value = text;
+    tempInput.style.position = 'fixed';
+    tempInput.style.opacity = '0';
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+        document.execCommand('copy');
+        const msg = lang === 'id' ? 'Email berhasil disalin ke clipboard!' : 'Email copied to clipboard!';
+        showToast(msg);
+        handleCopyFeedback(buttonElem, lang);
+    } catch (err) {
+        prompt(lang === 'id' ? 'Salin email berikut:' : 'Copy email:', text);
+    }
+    document.body.removeChild(tempInput);
+}
+
+function handleCopyFeedback(buttonElem, lang) {
+    if (!buttonElem) return;
+    const originalHTML = buttonElem.innerHTML;
+    buttonElem.innerHTML = `<i class="fas fa-check"></i> <span>${lang === 'id' ? 'Tersalin!' : 'Copied!'}</span>`;
+    buttonElem.style.borderColor = '#10b981';
+    buttonElem.style.color = '#10b981';
+
+    setTimeout(() => {
+        buttonElem.innerHTML = originalHTML;
+        buttonElem.style.borderColor = '';
+        buttonElem.style.color = '';
+    }, 2200);
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    if (!toast || !toastMsg) return;
+
+    toastMsg.textContent = message;
+    toast.classList.add('show');
+
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
 }
