@@ -1151,6 +1151,30 @@ img {
     text-justify: inter-word;
 }
 
+.btn-cert-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #e11d48;
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: var(--transition);
+    margin-top: 8px;
+}
+
+.btn-cert-pdf:hover {
+    background: #e11d48;
+    color: #ffffff;
+    border-color: #e11d48;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+
 /* ==========================================================================
    FOOTER - Compact Spacing
    ========================================================================== */
