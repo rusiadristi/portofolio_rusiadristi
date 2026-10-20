@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Portfolio JavaScript
  * Interactive functionalities including language switcher, typewriter effect,
  * mobile drawer menu, dynamic project detail modal with image carousel slider,
@@ -12,17 +12,64 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Navbar Background Blur & Scroll State
+    // 2. High-Performance Scroll Controller (Navbar & ScrollSpy)
     const navbar = document.getElementById('navbar');
-    const handleScroll = () => {
-        if (window.scrollY > 40) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    let isScrollTicking = false;
+
+    const handleScrollThrottled = () => {
+        const scrollY = window.scrollY;
+
+        // Navbar scrolled state (with null check)
+        if (navbar) {
+            if (scrollY > 40) {
+                if (!navbar.classList.contains('scrolled')) navbar.classList.add('scrolled');
+            } else {
+                if (navbar.classList.contains('scrolled')) navbar.classList.remove('scrolled');
+            }
         }
+
+        // ScrollSpy (only runs if page has sections)
+        if (sections.length > 0) {
+            const scrollPos = scrollY + 180;
+            let currentId = '';
+
+            for (let i = 0; i < sections.length; i++) {
+                const sec = sections[i];
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                if (scrollPos >= top && scrollPos < top + height) {
+                    currentId = sec.getAttribute('id');
+                    break;
+                }
+            }
+
+            if (currentId) {
+                navLinks.forEach(link => {
+                    const match = link.getAttribute('href') === `#${currentId}`;
+                    link.classList.toggle('active', match);
+                });
+
+                mobileNavLinks.forEach(link => {
+                    const match = link.getAttribute('href') === `#${currentId}`;
+                    link.classList.toggle('active', match);
+                });
+            }
+        }
+
+        isScrollTicking = false;
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+
+    window.addEventListener('scroll', () => {
+        if (!isScrollTicking) {
+            window.requestAnimationFrame(handleScrollThrottled);
+            isScrollTicking = true;
+        }
+    }, { passive: true });
+    handleScrollThrottled();
 
     // 3. Mobile Hamburger Menu Drawer Toggle
     const hamburger = document.querySelector('.hamburger');
@@ -51,38 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => toggleMobileMenu(false));
     });
-
-    // 4. ScrollSpy: Highlight Active Nav Link
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-
-    const highlightNavLink = () => {
-        const scrollPosition = window.scrollY + 180;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-
-                mobileNavLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    };
-    window.addEventListener('scroll', highlightNavLink, { passive: true });
 
     // 5. Initialize Typewriter Effect
     initTypewriter();
@@ -141,14 +156,22 @@ function setLang(lang) {
    TYPEWRITER ANIMATION EFFECT
    ========================================================================== */
 function initTypewriter() {
-    const wordsId = ["Web Development", "IT Business Analyst", "System Analysis", "UI/UX Design", "Mobile Development"];
-    const wordsEn = ["Web Development", "IT Business Analyst", "System Analysis", "UI/UX Design", "Mobile Development"];
+    const typewriterSpan = document.getElementById('typewriter');
+    if (!typewriterSpan) return;
+
+    const isBusinessPage = window.location.pathname.toLowerCase().includes('administrasi') || document.title.toLowerCase().includes('administrasi');
+
+    const wordsId = isBusinessPage 
+        ? ["Administrasi Perkantoran", "Tata Kelola Kearsipan", "Spreadsheet Specialist", "Pengolahan & Validasi Data", "Laporan Operasional Bisnis"]
+        : ["Web Development", "IT Business Analyst", "System Analysis", "UI/UX Design", "Mobile Development"];
+
+    const wordsEn = isBusinessPage
+        ? ["Office Administration", "Records Governance", "Spreadsheet Specialist", "Data Validation & Audit", "Business Operations Reporting"]
+        : ["Web Development", "IT Business Analyst", "System Analysis", "UI/UX Design", "Mobile Development"];
     
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    const typewriterSpan = document.getElementById('typewriter');
-    if (!typewriterSpan) return;
 
     function type() {
         const currentLang = document.documentElement.getAttribute('data-lang') || 'id';
@@ -694,6 +717,466 @@ const projectsData = {
             "User Account Authentication: Secure user registration and login system for membership management.",
             "Responsive Multi-Device Layout: Fluid adaptive layout across desktop, laptop, tablet, and mobile screens."
         ]
+    },
+    pengarsipandokumen: {
+        titleId: "Sistem Pengarsipan & Monitoring Dokumen Perusahaan",
+        titleEn: "Corporate Document Archiving & Monitoring System",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "Document Controller", 
+            "Executive Dashboard", "SOP Kearsipan", "Monitoring SLA"
+        ],
+        images: [
+            "gambar/arsip-dokumen-dashboard.png",
+            "gambar/arsip-dokumen-register.png",
+            "gambar/arsip-dokumen-sop.png"
+        ],
+        descId: `
+            <p>Sistem tata kelola kearsipan berbasis spreadsheet analitik untuk memonitor kelengkapan berkas, koordinat simpan, dan batas waktu SLA.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Eksekutif:</strong> Ringkasan kelengkapan berkas (60%), rekapitulasi kategori & divisi, dan alert overdue.</li>
+                <li><strong>Register Master Arsip:</strong> Database 30 berkas berindeks unik, koordinat fisik (Bantex/Box), dan link digital PDF.</li>
+                <li><strong>Master SOP & PIC:</strong> Kodifikasi arsip, matriks penanggung jawab divisi, dan target SLA 3-14 hari kerja.</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>Document Controller & Records Specialist</li>
+                <li>Spreadsheet Modeler (VLOOKUP, SUMIFS, COUNTIFS & Conditional Formatting)</li>
+                <li>Penyusun Standar Prosedur Operasional (SOP) Kearsipan</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Pencarian berkas fisik dipercepat dari 15 menit ke < 1 menit via kode lokasi.</li>
+                <li>Pencegahan keterlambatan dokumen melalui alert otomatis status Overdue.</li>
+                <li>Otomasi 100% rekapitulasi master register ke dasbor pimpinan tanpa input manual.</li>
+            </ul>
+        `,
+        descEn: `
+            <p>A centralized document archiving system built on spreadsheet analytics to monitor completeness, physical locations, and SLA deadlines.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Executive Dashboard:</strong> Real-time completion rate (60%), category/division breakdowns, and overdue alerts.</li>
+                <li><strong>Master Register:</strong> 30 indexed files with unique codes, physical coordinates (Bantex/Box), and digital PDF links.</li>
+                <li><strong>SOP & PIC Matrix:</strong> Classification codification, departmental PIC directory, and 3-14 day SLA targets.</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>Document Controller & Records Specialist</li>
+                <li>Spreadsheet Modeler (VLOOKUP, SUMIFS, COUNTIFS & Conditional Formatting)</li>
+                <li>Archival SOP Designer</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>Accelerated file retrieval from 15 mins to < 1 min via indexed location tags.</li>
+                <li>Prevented compliance delays through automated Overdue tracking alerts.</li>
+                <li>100% automated reporting from register to executive dashboards without manual entry.</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Eksekutif: Scorecard kelengkapan berkas, grafik status, dan komparasi divisi.",
+            "Register 30 Berkas: Kodifikasi unik dengan pemetaan lokasi simpan rak/box fisik.",
+            "Dual Filing System: Integrasi berkas fisik (Bantex/Box) dengan link cloud PDF.",
+            "Alert SLA & Overdue: Penandaan otomatis untuk batas waktu proses dokumen.",
+            "Validasi Tiga Lapis: Alur pengesahan Staff Arsip, Supervisor, hingga Manajer."
+        ],
+        featuresEn: [
+            "Executive Dashboard: Document completeness scorecard, status charts, and division bars.",
+            "30-File Register: Unique sequential codification mapped to physical storage tags.",
+            "Dual Filing System: Unified tracking of physical folders and cloud PDF scans.",
+            "SLA & Overdue Alerts: Automated color flags for approaching or missed deadlines.",
+            "Three-Tier Approval: Structured verification by Archive Staff, Supervisor, and Manager."
+        ]
+    },
+    rekapitulasikehadiran: {
+        titleId: "Sistem Rekapitulasi Kehadiran & Kedisiplinan Karyawan",
+        titleEn: "Employee Attendance Recapitulation & Discipline System",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "HR Analytics", 
+            "Executive Dashboard", "Timesheet Harian", "Evaluasi Disiplin"
+        ],
+        images: [
+            "gambar/rekapitulasi-kehadiran-dashboard.png",
+            "gambar/rekapitulasi-kehadiran-timesheet.png",
+            "gambar/rekapitulasi-kehadiran-policy.png"
+        ],
+        descId: `
+            <p>Sistem analitik presensi dan kedisiplinan karyawan berbasis spreadsheet untuk monitoring kehadiran harian, evaluasi divisi, dan payroll.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Eksekutif:</strong> Ringkasan KPI kehadiran 97.0% (427 hadir, 5 izin, 6 sakit, 2 alpa), grafik divisi, dan log kedisiplinan.</li>
+                <li><strong>Timesheet Harian:</strong> Presensi 20 karyawan (EMP-001 s.d. EMP-020) selama 31 hari dengan validasi status (H, I, S, A, OFF).</li>
+                <li><strong>Master & SOP HR:</strong> Standarisasi kode presensi, target kehadiran divisi (92%-95%), dan evaluasi kedisiplinan.</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>HR Operations & Attendance Specialist</li>
+                <li>Spreadsheet Modeler (SUMIFS, COUNTIFS, Nested IF & Conditional Formatting)</li>
+                <li>Penyusun Rekapitulasi & Pelaporan Kedisiplinan</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Otomasi 100% kalkulasi presensi harian & bulanan tanpa eror hitung manual.</li>
+                <li>Deteksi dini pelanggaran kedisiplinan (alpa tanpa keterangan & verifikasi SKD).</li>
+                <li>Laporan eksekutif siap cetak dengan validasi berjenjang (Staff, Supervisor, Direktur SDM).</li>
+            </ul>
+        `,
+        descEn: `
+            <p>Spreadsheet attendance and discipline analytics system to monitor daily presence logs, departmental evaluations, and payroll readiness.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Executive Dashboard:</strong> Attendance KPI 97.0% (427 present, 5 leave, 6 sick, 2 absent), division charts, and discipline logs.</li>
+                <li><strong>Daily Timesheet:</strong> 31-day log for 20 employees (EMP-001 to EMP-020) with dropdown codes (H, I, S, A, OFF).</li>
+                <li><strong>HR Policy & Standards:</strong> Standardized status codes, division targets (92%-95%), and evaluation metrics.</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>HR Operations & Attendance Specialist</li>
+                <li>Spreadsheet Modeler (SUMIFS, COUNTIFS, Nested IF & Conditional Formatting)</li>
+                <li>Attendance & Discipline Reporting Designer</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>100% automated daily & monthly tallying, eliminating manual calculation errors.</li>
+                <li>Proactive discipline tracking (unauthorized absences and doctor note audits).</li>
+                <li>Print-ready executive summary featuring a 3-tier approval workflow (Staff, Supervisor, Director).</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Eksekutif: KPI kehadiran 97.0%, diagram donat status, dan grafik performa 6 divisi.",
+            "Timesheet 31 Hari: Matriks presensi 20 karyawan dengan validasi kode status (H, I, S, A, OFF).",
+            "Audit Kedisiplinan: Log penindakan untuk karyawan dengan catatan alpa atau izin.",
+            "Master Kebijakan HR: Standar target kehadiran (92%-95%) dan rumus evaluasi objektif.",
+            "Validasi Tiga Lapis: Pengesahan Staff HR/Payroll, Supervisor, hingga Direktur SDM."
+        ],
+        featuresEn: [
+            "Executive Dashboard: 97.0% attendance scorecard, status donut chart, and 6-division bars.",
+            "31-Day Timesheet: 20-employee matrix featuring dropdown input validation (H, I, S, A, OFF).",
+            "Discipline Audit: Action log for staff with unexcused absences or frequent leaves.",
+            "HR Policy Thresholds: Division compliance targets (92%-95%) and standardized formulas.",
+            "Three-Tier Approval: Structured validation by HR Staff, Supervisor, and HR Director."
+        ]
+    },
+    suratmasukkeluar: {
+        titleId: "Sistem Pencatatan & Disposisi Surat Masuk dan Keluar",
+        titleEn: "Incoming & Outgoing Mail Management System",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "Agenda Korespondensi", 
+            "Disposisi Pimpinan", "Monitoring SLA", "Tata Persuratan"
+        ],
+        images: [
+            "gambar/surat-masuk-keluar-dashboard.png",
+            "gambar/surat-masuk-keluar-masuk.png",
+            "gambar/surat-masuk-keluar-keluar.png",
+            "gambar/surat-masuk-keluar-policy.png"
+        ],
+        descId: `
+            <p>Buku agenda digital berbasis spreadsheet untuk registrasi surat dinas, pelacakan disposisi pimpinan, dan pemantauan SLA respon.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Monitoring:</strong> KPI 40 surat (20 masuk, 20 keluar, penyelesaian 75%), grafik 7 divisi, dan alert surat kritis.</li>
+                <li><strong>Agenda Surat Masuk:</strong> Registrasi 20 surat (001-020/SM/2026), instruksi disposisi pimpinan, PIC, target SLA, dan link PDF.</li>
+                <li><strong>Agenda Surat Keluar:</strong> Registrasi 20 surat (001-020/SK/2026), divisi pembuat, nomor resi ekspedisi, dan lokasi simpan fisik.</li>
+                <li><strong>Master Tata Persuratan:</strong> Format baku penomoran dinas 7 divisi dan matriks SLA respon (24 jam s.d. 7 hari kerja).</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>Correspondence & Secretarial Specialist</li>
+                <li>Spreadsheet Modeler (INDEX, MATCH, COUNTIFS, Nested IF & Conditional Formatting)</li>
+                <li>Pengelola Alur Disposisi & Ekspedisi Surat</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Pencegahan surat tercecer via penomoran agenda terpusat dan pelacakan disposisi.</li>
+                <li>Mitigasi risiko kepatuhan melalui deteksi otomatis status Overdue surat penting.</li>
+                <li>Laporan eksekutif siap cetak dengan pengesahan Staff Tata Usaha, Koordinator, dan Corporate Secretary.</li>
+            </ul>
+        `,
+        descEn: `
+            <p>A digital agenda spreadsheet system for registering official mail, tracking leadership dispositions, and monitoring SLA turnaround.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Monitoring Dashboard:</strong> 40-letter KPI (20 in, 20 out, 75% resolved), 7-division charts, and critical alerts.</li>
+                <li><strong>Incoming Mail Register:</strong> 20 letters (001-020/SM/2026), leadership directives, assigned PICs, SLA, and PDF links.</li>
+                <li><strong>Outgoing Mail Register:</strong> 20 letters (001-020/SK/2026), issuing division, courier tracking numbers, and physical tags.</li>
+                <li><strong>Mail Standards & SOP:</strong> Official numbering syntax across 7 divisions and response SLAs (24 hrs to 7 days).</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>Correspondence & Secretarial Specialist</li>
+                <li>Spreadsheet Modeler (INDEX, MATCH, COUNTIFS, Nested IF & Conditional Formatting)</li>
+                <li>Disposition & Mail Dispatch Controller</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>Prevented misplaced mail through centralized sequential numbering and live tracking.</li>
+                <li>Mitigated compliance risks via automated Overdue detection on priority letters.</li>
+                <li>Print-ready summary featuring sign-offs by Admin Staff, Coordinator, and Corporate Secretary.</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Eksekutif: Scorecard 40 surat, diagram status tindak lanjut, dan komparasi 7 divisi.",
+            "Agenda Surat Masuk: Registrasi 20 surat dengan disposisi pimpinan dan penugasan PIC.",
+            "Agenda Surat Keluar: Pencatatan 20 surat keluar dengan tracking resi dan lokasi simpan.",
+            "Matriks Batas Waktu (SLA): Standar respon 24 jam (Sangat Segera) hingga 7 hari kerja (Biasa).",
+            "Validasi Tiga Lapis: Pengesahan Staff Tata Usaha, Koordinator, dan Corporate Secretary."
+        ],
+        featuresEn: [
+            "Executive Dashboard: 40-letter scorecard, disposition status donut chart, and 7-division bars.",
+            "Incoming Mail Register: 20-file registry with executive disposition directives and PIC tags.",
+            "Outgoing Mail Register: 20-file registry with courier tracking numbers and folder coordinates.",
+            "Response SLA Matrix: Turnaround benchmarks ranging from 24 hours (Urgent) to 7 days (Routine).",
+            "Three-Tier Approval: Validation sign-offs by Admin Staff, Coordinator, and Corporate Secretary."
+        ]
+    },
+    dashboardadministrasi: {
+        titleId: "Dashboard Eksekutif Laporan Administrasi Bulanan",
+        titleEn: "Monthly Administration Executive Dashboard",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "Konsolidasi 3 Pilar", 
+            "Executive Dashboard", "Analisis Anggaran", "Monitoring Risiko", 
+            "Formula SUMIFS & COUNTIFS", "Pelaporan Eksekutif"
+        ],
+        images: [
+            "gambar/dashboard-administrasi-executive.png",
+            "gambar/dashboard-administrasi-rekapitulasi.png",
+            "gambar/dashboard-administrasi-arsip.png",
+            "gambar/dashboard-administrasi-persuratan.png",
+            "gambar/dashboard-administrasi-kegiatan.png",
+            "gambar/dashboard-administrasi-master.png"
+        ],
+        descId: `
+            <p>Dasbor analitik eksekutif untuk mengonsolidasi seluruh beban kerja tata usaha dan operasional kantor meliputi pengelolaan arsip, korespondensi, dan kegiatan korporat.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Eksekutif:</strong> Scorecard KPI 77 entitas (50 selesai, tingkat tuntas 64.9%), grafik komparasi 7 divisi, dan tabel eskalasi risiko.</li>
+                <li><strong>Rekapitulasi 3 Pilar & Anggaran:</strong> Evaluasi kinerja pilar serta efisiensi anggaran kegiatan Rp 179,1 Juta (realisasi biaya 68.4%).</li>
+                <li><strong>Database & Master Referensi:</strong> Database 25 dokumen, 30 surat, 22 kegiatan, serta master kodifikasi dan bobot status 7 departemen.</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>Executive Administration & Operations Analyst</li>
+                <li>Spreadsheet Consolidation Modeler (Formula SUMIFS, COUNTIFS, Nested IF & Variance Analysis)</li>
+                <li>Penyusun Laporan Kinerja Bulanan & Rekomendasi Tata Kelola</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Integrasi 77 entitas kerja lintas 7 divisi ke dalam 1 dasbor analitik terpadu.</li>
+                <li>Efisiensi anggaran sebesar Rp 179,1 Juta melalui monitoring realisasi biaya berkala.</li>
+                <li>Laporan eksekutif siap cetak dengan pengesahan berjenjang (Staff TU, Koordinator, General Manager).</li>
+            </ul>
+        `,
+        descEn: `
+            <p>An executive analytics dashboard consolidating operational administration workloads across archival governance, correspondence, and corporate agendas.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Executive Dashboard:</strong> Scorecard of 77 workload entities (50 completed, 64.9% rate), 7-division comparison bars, and risk escalation logs.</li>
+                <li><strong>3-Pillar Recapitulation & Budget:</strong> Pillar performance evaluation and corporate event budget savings of Rp 179.1 Million (68.4% realization).</li>
+                <li><strong>Operational Database & Master Codes:</strong> 25 documents, 30 letters, 22 corporate events, and division coding architecture.</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>Executive Administration & Operations Analyst</li>
+                <li>Spreadsheet Consolidation Modeler (SUMIFS, COUNTIFS, Nested IF & Variance Analysis)</li>
+                <li>Monthly KPI Reporting & Governance Consultant</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>Consolidated 77 cross-departmental administrative tasks into a single real-time dashboard.</li>
+                <li>Achieved budget savings of Rp 179.1 Million through systematic expense tracking.</li>
+                <li>Print-ready executive summary with a 3-tier approval hierarchy (Admin Staff, Coordinator, General Manager).</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Eksekutif: Scorecard 77 entitas kerja, grafik 7 divisi, dan action alert risiko.",
+            "Konsolidasi 3 Pilar: Pelacakan terpadu 25 dokumen, 30 surat, dan 22 agenda kegiatan.",
+            "Analisis Anggaran: Monitoring efisiensi biaya dengan realisasi 68.4% (hemat Rp 179 Juta).",
+            "Master Referensi & Kode: Kodifikasi divisi, pembobotan status terpadu, dan matriks pimpinan.",
+            "Validasi Tiga Lapis: Pengesahan Staff TU, Koordinator Tata Usaha, dan GM Operasional."
+        ],
+        featuresEn: [
+            "Executive Dashboard: 77-entity workload scorecard, 7-division charts, and risk action alerts.",
+            "3-Pillar Consolidation: Integrated tracking of 25 documents, 30 letters, and 22 corporate events.",
+            "Budget Variance Analysis: Expenditure monitoring with 68.4% utilization (Rp 179M savings).",
+            "Master Reference Architecture: Division codification syntax, status weighting, and leadership matrix.",
+            "Three-Tier Approval: Multi-level sign-offs by Admin Staff, Coordinator, and Operations GM."
+        ]
+    },
+    rekonsiliasidata: {
+        titleId: "Sistem Uji Kualitas & Rekonsiliasi Data Transaksi",
+        titleEn: "Data Quality Audit & Transaction Reconciliation System",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "Rekonsiliasi Bank", 
+            "Audit Kualitas Data", "Deteksi Anomali", "Kertas Kerja Audit", 
+            "Formula XLOOKUP", "Analisis Deviasi"
+        ],
+        images: [
+            "gambar/rekonsiliasi-data-dashboard.png",
+            "gambar/rekonsiliasi-data-engine.png",
+            "gambar/rekonsiliasi-data-temuan.png",
+            "gambar/rekonsiliasi-data-sumber-a.png",
+            "gambar/rekonsiliasi-data-sumber-b.png",
+            "gambar/rekonsiliasi-data-master.png"
+        ],
+        descId: `
+            <p>Sistem audit dan rekonsiliasi data transaksi berbasis spreadsheet untuk mencocokkan catatan internal (GL/ERP) dengan mutasi rekening koran bank secara presisi.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Audit Internal:</strong> Scorecard 35 transaksi (tingkat cocok 80%, selisih 3 rekor, transaksi ganda 2 kasus) dan mitigasi risiko Rp 97,08 Juta.</li>
+                <li><strong>Engine Rekonsiliasi Otomatis:</strong> Pencocokan otomatis mutasi GL internal (Rp 1,018 M) vs Bank (Rp 944,5 Juta) dengan deteksi deviasi instan.</li>
+                <li><strong>Kertas Kerja & Master Metodologi:</strong> Log 10 temuan pengecualian (root cause & action plan) serta master kodifikasi audit terstandar.</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>Internal Audit & Financial Data Specialist</li>
+                <li>Spreadsheet Logic Engineer (Formula XLOOKUP, INDEX/MATCH, COUNTIFS & Conditional Formatting)</li>
+                <li>Investigator Deviasi Transaksi & Kertas Kerja Rekonsiliasi</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Otomasi 100% proses rekonsiliasi menggantikan pengecekan manual baris per baris.</li>
+                <li>Identifikasi dan mitigasi dini deviasi finansial sebesar Rp 97,08 Juta (posting ganda & selisih nominal).</li>
+                <li>Kertas kerja audit terstruktur siap saji untuk audit internal maupun eksternal.</li>
+            </ul>
+        `,
+        descEn: `
+            <p>A spreadsheet-based transaction audit and reconciliation system matching internal ERP general ledger records against bank statement logs with high precision.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Internal Audit Dashboard:</strong> Scorecard of 35 transactions (80% match rate, 3 variances, 2 duplicates) with Rp 97.08M exception value oversight.</li>
+                <li><strong>Automated Matching Engine:</strong> Automated matching between internal GL (Rp 1.018B) and bank records (Rp 944.5M) with instant anomaly flags.</li>
+                <li><strong>Audit Workpapers & Master Methodology:</strong> 10 documented exceptions with root-cause analysis and standardized audit codification.</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>Internal Audit & Financial Data Specialist</li>
+                <li>Spreadsheet Logic Engineer (XLOOKUP, INDEX/MATCH, COUNTIFS & Conditional Formatting)</li>
+                <li>Transaction Variance Investigator & Audit Workpaper Author</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>100% automated reconciliation replacing tedious line-by-line manual inspections.</li>
+                <li>Early detection and mitigation of Rp 97.08 Million in financial variances and duplicate billings.</li>
+                <li>Comprehensive audit trail and workpapers fully compliant with internal and external audit standards.</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Audit: Scorecard 35 transaksi, diagram hasil uji, dan evaluasi 5 dimensi kualitas data.",
+            "Automated Matching Engine: Pencocokan otomatis jurnal internal vs rekening koran bank via XLOOKUP.",
+            "Deteksi Anomali Cepat: Identifikasi instan posting ganda, selisih nominal, dan outstanding bank.",
+            "Kertas Kerja Audit: Registrasi 10 temuan pengecualian lengkap dengan root cause dan target SLA.",
+            "Master Metodologi: Standarisasi status uji (MATCH, VAR_AMT, DUPLICATE) dan matriks mitigasi risiko."
+        ],
+        featuresEn: [
+            "Audit Dashboard: 35-transaction scorecard, reconciliation donut chart, and 5 data quality dimensions.",
+            "Automated Matching Engine: High-speed record matching between internal GL and bank records via XLOOKUP.",
+            "Fast Anomaly Detection: Instant flags for duplicate postings, amount variances, and outstanding clearing.",
+            "Audit Workpapers: Structured register of 10 audit exceptions with root cause analysis and action plans.",
+            "Standardized Methodology: Uniform test status codes (MATCH, VAR_AMT, DUPLICATE) and risk matrices."
+        ]
+    },
+    laporanpenjualan: {
+        titleId: "Laporan Penjualan Elektronik & Komputer",
+        titleEn: "Electronics & Computer Sales Performance Report",
+        tags: [
+            "Microsoft Excel", "Google Sheets", "Laporan Penjualan", 
+            "Analisis Omzet", "Grafik Komparasi", "Formula SUM & AVERAGE", 
+            "Administrasi Kasir", "Rekapitulasi Transaksi"
+        ],
+        images: [
+            "gambar/laporan-penjualan-elektronik.png"
+        ],
+        descId: `
+            <p>Laporan penjualan komersial berbasis spreadsheet untuk merekapitulasi volume transaksi, perolehan omzet 15 lini produk, dan performa rata-rata transaksi.</p>
+            <br>
+            <strong>Modul Utama:</strong>
+            <ul>
+                <li><strong>Dashboard Ringkasan Penjualan:</strong> Scorecard total pendapatan Rp 219.000.000, 123 unit terjual, rata-rata transaksi Rp 14.600.000, dan transaksi puncak Rp 34.000.000.</li>
+                <li><strong>Tabel Rekapitulasi 15 Produk:</strong> Rincian penjualan hardware, gadget, dan aksesori dengan kalkulasi otomatis jumlah unit, harga satuan, dan total omzet.</li>
+                <li><strong>Grafik Komparasi Penjualan:</strong> Diagram batang horizontal untuk membandingkan kontribusi pendapatan masing-masing produk secara visual.</li>
+            </ul>
+            <br>
+            <strong>Peran Saya:</strong>
+            <ul>
+                <li>Sales Administration & Financial Reporting Specialist</li>
+                <li>Spreadsheet Modeler (Formula SUM, AVERAGE, MAX, MIN & Product Analytics)</li>
+                <li>Penyusun Dokumen Resmi Laporan Penjualan & Kasir</li>
+            </ul>
+            <br>
+            <strong>Pencapaian:</strong>
+            <ul>
+                <li>Otomasi 100% kalkulasi total pendapatan dan statistik penjualan tanpa komputasi manual.</li>
+                <li>Penyajian data visual penjualan instan untuk evaluasi produk terlaris (Laptop ASUS VivoBook & Apple iPad).</li>
+                <li>Dokumen resmi siap cetak lengkap dengan lembar validasi Staff Keuangan/Kasir dan Manager Operasional.</li>
+            </ul>
+        `,
+        descEn: `
+            <p>A commercial sales report built on spreadsheets to consolidate transaction volumes, revenue performance across 15 product lines, and transaction benchmarks.</p>
+            <br>
+            <strong>Core Modules:</strong>
+            <ul>
+                <li><strong>Sales Summary Dashboard:</strong> Scorecard featuring Rp 219,000,000 gross revenue, 123 units sold, Rp 14,600,000 average order, and Rp 34,000,000 peak transaction.</li>
+                <li><strong>15-Product Line Registry:</strong> Granular inventory log covering hardware, gadgets, and peripherals with automated price extensions.</li>
+                <li><strong>Visual Sales Comparison:</strong> Horizontal bar charts delivering clear visual contrast of product revenue contributions.</li>
+            </ul>
+            <br>
+            <strong>My Roles:</strong>
+            <ul>
+                <li>Sales Administration & Financial Reporting Specialist</li>
+                <li>Spreadsheet Modeler (SUM, AVERAGE, MAX, MIN & Product Analytics)</li>
+                <li>Official Sales Summary & Cashier Documentation Author</li>
+            </ul>
+            <br>
+            <strong>Key Impact:</strong>
+            <ul>
+                <li>100% automated revenue math and statistical benchmarking without manual calculations.</li>
+                <li>Instant visibility into flagship revenue drivers (ASUS VivoBook Laptop & Apple iPad).</li>
+                <li>Print-ready commercial report complete with verification sign-offs by Finance/Cashier and Sales Manager.</li>
+            </ul>
+        `,
+        featuresId: [
+            "Dashboard Penjualan: Scorecard pendapatan Rp 219 Juta, 123 unit terjual, dan rata-rata per transaksi.",
+            "Tabel 15 Lini Produk: Rekapitulasi lengkap unit, harga satuan, dan kalkulasi omzet otomatis.",
+            "Grafik Komparasi Visual: Diagram batang komparasi kontribusi pendapatan antar-produk.",
+            "Statistik Penjualan Otomatis: Formula dinamis untuk rata-rata, transaksi tertinggi, dan terendah.",
+            "Pengesahan Dua Lapis: Lembar validasi resmi dari Staff Keuangan & Kasir serta Manager Sales."
+        ],
+        featuresEn: [
+            "Sales Dashboard: Scorecards for Rp 219M revenue, 123 units sold, and average order value.",
+            "15-Product Line Registry: Structured summary of quantities, unit prices, and revenue calculations.",
+            "Visual Comparison Chart: Horizontal bar diagram highlighting comparative product performance.",
+            "Automated Sales Stats: Dynamic formulas computing average, maximum, and minimum transaction values.",
+            "Two-Tier Approval: Formal sign-off workflow covering Finance/Cashier Staff and Sales Operations Manager."
+        ]
     }
 };
 
@@ -757,6 +1240,7 @@ function openProjectModal(projectId) {
             img.src = imgUrl;
             img.alt = `${project.titleId} Slide ${index + 1}`;
             img.loading = 'lazy';
+            img.decoding = 'async';
             img.style.cursor = 'zoom-in';
             img.title = 'Klik untuk memperbesar gambar';
             img.onclick = () => openImageModal(imgUrl);
@@ -879,13 +1363,13 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================================================
    CV VIEWER MODAL
    ========================================================================== */
-function openCVModal(pdfUrl = 'pdf/CV_Rusi_Adristi.pdf') {
+function openCVModal(pdfUrl = 'pdf/CV%20Rusi%20Adristi-IT.pdf') {
     const modal = document.getElementById('cvModal');
     const frame = document.getElementById('cvFrame');
     const downloadBtn = document.getElementById('cvDownloadBtn');
     const openNewTabBtn = document.getElementById('cvOpenNewTabBtn');
 
-    const cleanUrl = pdfUrl || 'pdf/CV_Rusi_Adristi.pdf';
+    const cleanUrl = pdfUrl ? encodeURI(decodeURI(pdfUrl)) : 'pdf/CV%20Rusi%20Adristi-IT.pdf';
     const viewerUrl = cleanUrl.includes('#') ? cleanUrl : `${cleanUrl}#view=FitH`;
 
     if (modal && frame) {
